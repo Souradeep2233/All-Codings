@@ -1,0 +1,28 @@
+//Anode has to be grounded
+#include<EEPROM.h>
+// Define the pin numbers for the LED and push button
+const int ledPin = 13; // Change this to the desired digital pin for your LED
+const int buttonPin = 2; // Change this to the desired digital pin for your button
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // Set the LED pin as an output
+  pinMode(buttonPin, INPUT); // Set the button pin as an input
+}
+
+void loop() {
+  // Read the state of the button
+  int buttonState = digitalRead(buttonPin);
+
+  // If the button is pressed (HIGH state), turn on the LED
+  if (buttonState == HIGH) {
+    digitalWrite(ledPin, HIGH); // Turn on the LED
+    delay(1000);
+    for (int i = 0; i < EEPROM.length(); i++) {
+      EEPROM.write(i, 0);}
+    
+  } else {
+    // Otherwise (button not pressed), turn off the LED
+    digitalWrite(ledPin, LOW); // Turn off the LED
+  }
+}
+
